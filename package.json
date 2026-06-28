@@ -10,14 +10,20 @@
     "test:api": "npx playwright test tests/api",
     "test:regression": "npx playwright test --grep @regression",
     "test:smoke": "npx playwright test --grep @smoke",
+    "ai:analyze-failure": "node scripts/analyze-failure.mjs",
     "report": "npx playwright show-report"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@google/genai": "^2.10.0",
     "@playwright/test": "^1.61.1",
     "@types/node": "^26.0.1",
+    "dotenv": "^17.4.2",
     "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "openai": "^6.45.0"
   }
 }

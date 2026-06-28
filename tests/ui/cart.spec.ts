@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test } from '../../fixtures/test';
 import { users } from '../../data/users';
 import { CartPage } from '../../pages/CartPage';
 import { InventoryPage } from '../../pages/InventoryPage';
