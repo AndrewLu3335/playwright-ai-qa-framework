@@ -84,6 +84,8 @@ playwright.config.ts       Playwright runtime configuration
 tsconfig.json              TypeScript project configuration
 ```
 
+Local agent planning artifacts are excluded from version control so the repository contains only runnable framework code and public documentation.
+
 ## Installation
 
 ```bash
