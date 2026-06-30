@@ -8,6 +8,7 @@
     "test:headed": "npx playwright test --headed",
     "test:ui": "npx playwright test tests/ui",
     "test:api": "npx playwright test --project=laceup-api",
+    "test:laceup:ui": "npx playwright test --project=laceup-ui",
     "test:regression": "npx playwright test --grep @regression",
     "test:smoke": "npx playwright test --grep @smoke",
     "ai:analyze-failure": "node scripts/analyze-failure.mjs",

@@ -44,6 +44,11 @@ The Lace Up API suite covers:
 - Local E2E Session creation
 - Authenticated run-list access
 
+The Lace Up UI suite covers:
+
+- Authenticated UI/API run-list consistency
+- Unauthenticated private-route redirects
+
 ## Project Structure
 
 ```text
@@ -68,6 +73,8 @@ tests/
     auth.setup.ts          Local E2E Session setup
     api/
       runs.spec.ts         Public, permission, and authenticated API tests
+    ui/
+      run-list.spec.ts     Authenticated UI/API consistency and redirect tests
 
 config/
   ai-failure-analysis-prompt.md
@@ -123,6 +130,19 @@ npm run test:api
 ```
 
 The suite verifies the public health endpoint, unauthorized access control, and authenticated access to the runs API. Authentication state is written to the ignored `playwright/.auth/` directory and must never be committed.
+
+Run the Lace Up UI/API cross-layer suite after starting the frontend:
+
+```bash
+cd /path/to/lace_up
+docker compose -f compose.dev.yaml -f compose.e2e.yaml up -d db backend frontend
+```
+
+```bash
+npm run test:laceup:ui
+```
+
+The UI suite compares the protected runs API response with rendered run cards and verifies that users without a Django Session are redirected to login. It is read-only and does not create test runs.
 
 Run smoke tests:
 

@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const laceUpApiUrl = process.env.LACEUP_API_URL ?? 'http://localhost:8000';
+const laceUpUiUrl = process.env.LACEUP_UI_URL ?? 'http://localhost:3000';
 const laceUpAuthFile = 'playwright/.auth/laceup.json';
 
 /**
@@ -47,7 +48,7 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      testMatch: '**/ui/**/*.spec.ts',
+      testMatch: '**/tests/ui/**/*.spec.ts',
       use: { ...devices['Desktop Chrome'] },
     },
     {
@@ -63,6 +64,16 @@ export default defineConfig({
       dependencies: ['laceup-auth'],
       use: {
         baseURL: laceUpApiUrl,
+        storageState: laceUpAuthFile,
+      },
+    },
+    {
+      name: 'laceup-ui',
+      testMatch: '**/laceup/ui/**/*.spec.ts',
+      dependencies: ['laceup-auth'],
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: laceUpUiUrl,
         storageState: laceUpAuthFile,
       },
     },
