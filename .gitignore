@@ -7,6 +7,6 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 .worktrees/
-
+docs/superpowers/
 .env
 ai-report/

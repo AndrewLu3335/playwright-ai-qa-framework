@@ -5,6 +5,7 @@ import path from 'node:path';
 const authFile = path.join(process.cwd(), 'playwright/.auth/laceup.json');
 const username = process.env.LACEUP_E2E_USERNAME ?? 'e2e_playwright_api';
 
+// Creates the reusable Django Session used by authenticated Lace Up API tests.
 setup('authenticate Lace Up API', async ({ request }) => {
   expect(
     username.startsWith('e2e_'),

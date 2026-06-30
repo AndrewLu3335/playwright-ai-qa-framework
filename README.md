@@ -22,6 +22,7 @@ End-to-end QA automation framework built with Playwright and TypeScript. The pro
 
 - Playwright Test
 - TypeScript
+- Node.js 20+
 - Page Object Model
 - HTML test reports
 - Trace, screenshot, and video artifacts
@@ -35,6 +36,13 @@ The current UI suite uses https://www.saucedemo.com/ as the test application and
 - Add product to cart
 - Remove product from cart
 - Complete checkout flow
+
+The Lace Up API suite covers:
+
+- Public backend health status
+- Unauthenticated access control
+- Local E2E Session creation
+- Authenticated run-list access
 
 ## Project Structure
 
@@ -285,4 +293,4 @@ Planned improvements:
 
 ## License
 
-ISC
+MIT
