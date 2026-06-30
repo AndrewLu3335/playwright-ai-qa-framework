@@ -56,6 +56,10 @@ tests/
     login.spec.ts          Login smoke and negative tests
     cart.spec.ts           Cart workflow tests
     checkout.spec.ts       End-to-end checkout regression test
+  laceup/
+    auth.setup.ts          Local E2E Session setup
+    api/
+      runs.spec.ts         Public, permission, and authenticated API tests
 
 config/
   ai-failure-analysis-prompt.md
@@ -92,6 +96,23 @@ Run UI tests:
 ```bash
 npm run test:ui
 ```
+
+### Lace Up API Tests
+
+Start the Lace Up backend with local E2E authentication:
+
+```bash
+cd /path/to/lace_up
+docker compose -f compose.dev.yaml -f compose.e2e.yaml up -d db backend
+```
+
+Run the API suite from this repository:
+
+```bash
+npm run test:api
+```
+
+The suite verifies the public health endpoint, unauthorized access control, and authenticated access to the runs API. Authentication state is written to the ignored `playwright/.auth/` directory and must never be committed.
 
 Run smoke tests:
 
@@ -258,7 +279,6 @@ An element-not-found error alone is not classified as a network problem. `NETWOR
 Planned improvements:
 
 - GitHub Actions workflow for CI execution
-- API test layer
 - Cross-browser and mobile projects
 - AI-assisted trace summarization
 - README badges and published test report artifacts
