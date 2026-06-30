@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const laceUpApiUrl = process.env.LACEUP_API_URL ?? 'http://localhost:8000';
+const laceUpAuthFile = 'playwright/.auth/laceup.json';
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -44,7 +47,24 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
+      testMatch: '**/ui/**/*.spec.ts',
       use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'laceup-auth',
+      testMatch: '**/laceup/auth.setup.ts',
+      use: {
+        baseURL: laceUpApiUrl,
+      },
+    },
+    {
+      name: 'laceup-api',
+      testMatch: '**/laceup/api/**/*.spec.ts',
+      dependencies: ['laceup-auth'],
+      use: {
+        baseURL: laceUpApiUrl,
+        storageState: laceUpAuthFile,
+      },
     },
 
     // {
